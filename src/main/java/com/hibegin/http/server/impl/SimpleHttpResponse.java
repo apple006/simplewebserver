@@ -147,7 +147,7 @@ public class SimpleHttpResponse implements HttpResponse {
 
         header.put("Server", SERVER_INFO);
         if (!getHeader().containsKey("Connection")) {
-            boolean keepAlive = request.getHeader("Connection") != null && "keep-alive".equalsIgnoreCase(request.getHeader("Connection"));
+            boolean keepAlive = request.getHeader("Connection") == null || "close".equalsIgnoreCase(request.getHeader("Connection"));
             if (keepAlive) {
                 getHeader().put("Connection", "keep-alive");
             } else {
